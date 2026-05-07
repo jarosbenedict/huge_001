@@ -34,3 +34,6 @@ public, protectd, private
 
 ### Wie sehen abstrakte Klassen in PHP aus?
 abstract, sind Vorlagen für andere Klassen.
+
+# Login-Test
+![](aufgaben_imgs/demo_12345678.png)
