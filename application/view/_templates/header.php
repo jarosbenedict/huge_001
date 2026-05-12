@@ -74,6 +74,9 @@
                 } ?> >
                     <a href="<?php echo Config::get('URL'); ?>admin/">Admin</a>
                 </li>
+                <li <?php if (View::checkForActiveController($filename, "register")) { echo ' class="active" '; } ?> >
+                    <a href="<?php echo Config::get('URL'); ?>register/index">Register User</a>
+                </li>
             <?php endif; ?>
         <?php endif; ?>
         </ul>

@@ -67,16 +67,21 @@ class RegistrationModel
             return false;
         }
 
+        // aktiv setzen weil keine conf
+        self::verifyNewUser($user_id, $user_activation_hash);
+        Session::add('feedback_positive', Text::get('FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED'));
+        return true;
+
         // send verification email
-        if (self::sendVerificationEmail($user_id, $user_email, $user_activation_hash)) {
-            Session::add('feedback_positive', Text::get('FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED'));
-            return true;
-        }
+        // if (self::sendVerificationEmail($user_id, $user_email, $user_activation_hash)) {
+        //     Session::add('feedback_positive', Text::get('FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED'));
+        //     return true;
+        // }
 
         // if verification email sending failed: instantly delete the user
-        self::rollbackRegistrationByUserId($user_id);
-        Session::add('feedback_negative', Text::get('FEEDBACK_VERIFICATION_MAIL_SENDING_FAILED'));
-        return false;
+        // self::rollbackRegistrationByUserId($user_id);
+        // Session::add('feedback_negative', Text::get('FEEDBACK_VERIFICATION_MAIL_SENDING_FAILED'));
+        // return false;
     }
 
     /**
@@ -96,10 +101,10 @@ class RegistrationModel
         $return = true;
 
         // perform all necessary checks
-        if (!CaptchaModel::checkCaptcha($captcha)) {
-            Session::add('feedback_negative', Text::get('FEEDBACK_CAPTCHA_WRONG'));
-            $return = false;
-        }
+        // if (!CaptchaModel::checkCaptcha($captcha)) {
+        //     Session::add('feedback_negative', Text::get('FEEDBACK_CAPTCHA_WRONG'));
+        //     $return = false;
+        // }
 
         // if username, email and password are all correctly validated, but make sure they all run on first sumbit
         if (self::validateUserName($user_name) AND self::validateUserEmail($user_email, $user_email_repeat) AND self::validateUserPassword($user_password_new, $user_password_repeat) AND $return) {
