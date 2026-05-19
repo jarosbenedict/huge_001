@@ -21,6 +21,13 @@ class ProfileController extends Controller
         );
     }
 
+    public function userList()
+    {
+        $this->View->render('profile/userlist', array(
+            'users' => UserModel::getPublicProfilesOfAllUsers())
+        );
+    }
+
     /**
      * This method controls what happens when you move to /overview/showProfile in your app.
      * Shows the (public) details of the selected user.

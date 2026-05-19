@@ -32,16 +32,16 @@ class UserRoleModel
         }
     }
 
-    /**
-     * Writes the new account type marker to the database and to the session
-     *
-     * @param $type
-     *
-     * @return bool
-     */
+    public static function getAllRoles()
+    {
+        $database = DatabaseFactory::getFactory()->getConnection();
+        $query = $database->prepare("SELECT role_id, role_name FROM user_roles ORDER BY role_id ASC");
+        $query->execute();
+        return $query->fetchAll();
+    }
+
     public static function saveRoleToDatabase($type)
     {
-        // if $type is not 1 or 2
         if (!in_array($type, [1, 2])) {
             return false;
         }

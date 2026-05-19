@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" />
+
 <div class="container">
     <h1>Admin/index</h1>
 
@@ -13,7 +15,7 @@
             or suspend a user.
         </div>
         <div>
-            <table class="overview-table">
+            <table id="admin-user-table" class="overview-table">
                 <thead>
                 <tr>
                     <td>Id</td>
@@ -24,6 +26,7 @@
                     <td>Link to user's profile</td>
                     <td>suspension Time in days</td>
                     <td>Soft delete</td>
+                    <td>Role</td>
                     <td>Submit</td>
                 </tr>
                 </thead>
@@ -45,6 +48,15 @@
                             <td><input type="number" name="suspension" /></td>
                             <td><input type="checkbox" name="softDelete" <?php if ($user->user_deleted) { ?> checked <?php } ?> /></td>
                             <td>
+                                <select name="role_id">
+                                    <?php foreach ($this->roles as $role) { ?>
+                                        <option value="<?= $role->role_id; ?>" <?= ($user->user_account_type == $role->role_id ? 'selected' : ''); ?>>
+                                            <?= $role->role_name; ?>
+                                        </option>
+                                    <?php } ?>
+                                </select>
+                            </td>
+                            <td>
                                 <input type="hidden" name="user_id" value="<?= $user->user_id; ?>" />
                                 <input type="submit" />
                             </td>
@@ -55,3 +67,11 @@
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#admin-user-table').DataTable();
+    });
+</script>

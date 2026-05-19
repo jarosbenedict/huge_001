@@ -24,6 +24,9 @@
             <li <?php if (View::checkForActiveController($filename, "profile")) { echo ' class="active" '; } ?> >
                 <a href="<?php echo Config::get('URL'); ?>profile/index">Profiles</a>
             </li>
+            <li <?php if (View::checkForActiveControllerAndAction($filename, "profile/userlist")) { echo ' class="active" '; } ?> >
+                <a href="<?php echo Config::get('URL'); ?>profile/userlist">Users &amp; Groups</a>
+            </li>
             <?php if (Session::userIsLoggedIn()) { ?>
                 <li <?php if (View::checkForActiveController($filename, "dashboard")) { echo ' class="active" '; } ?> >
                     <a href="<?php echo Config::get('URL'); ?>dashboard/index">Dashboard</a>

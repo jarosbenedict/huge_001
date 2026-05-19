@@ -70,6 +70,28 @@ class AdminModel
         }
     }
 
+    public static function setUserRole($userId, $roleId)
+    {
+        if ($userId == Session::get('user_id')) {
+            Session::add('feedback_negative', Text::get('FEEDBACK_ACCOUNT_CANT_DELETE_SUSPEND_OWN'));
+            return false;
+        }
+
+        $database = DatabaseFactory::getFactory()->getConnection();
+        $query = $database->prepare("UPDATE users SET user_account_type = :role_id WHERE user_id = :user_id LIMIT 1");
+        $query->execute(array(
+            ':role_id' => intval($roleId),
+            ':user_id' => intval($userId)
+        ));
+
+        if ($query->rowCount() == 1) {
+            Session::add('feedback_positive', Text::get('FEEDBACK_USER_ROLE_CHANGE_SUCCESSFUL'));
+            return true;
+        }
+
+        return false;
+    }
+
     /**
      * Kicks the selected user out of the system instantly by resetting the user's session.
      * This means, the user will be "logged out".
