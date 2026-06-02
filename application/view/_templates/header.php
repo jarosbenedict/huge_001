@@ -34,10 +34,10 @@
                 <li <?php if (View::checkForActiveController($filename, "note")) { echo ' class="active" '; } ?> >
                     <a href="<?php echo Config::get('URL'); ?>note/index">My Notes</a>
                 </li>
-                <li <?php if (View::checkForActiveController($filename, "message")) { echo ' class="active" '; } ?> >
+                <li <?php if (View::checkForActiveController($filename, "message") || View::checkForActiveController($filename, "group")) { echo ' class="active" '; } ?> >
                     <a href="<?php echo Config::get('URL'); ?>message/index">
                         Messages
-                        <?php $unread = MessageModel::countUnread(); if ($unread > 0) { ?>
+                        <?php $unread = MessageModel::countUnread() + GroupModel::countUnreadGroup(); if ($unread > 0) { ?>
                             <span class="msg-badge"><?= $unread; ?></span>
                         <?php } ?>
                     </a>

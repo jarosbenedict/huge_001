@@ -33,5 +33,40 @@
                 </tbody>
             </table>
         <?php } ?>
+
+        <hr style="margin:2em 0;">
+
+        <h2>Groups <a href="<?= Config::get('URL'); ?>group/create" style="font-size:.7em;font-weight:normal;margin-left:.5em;">+ New group</a></h2>
+        <?php $groups = GroupModel::getGroupsForUser(); ?>
+        <?php if (empty($groups)) { ?>
+            <p>You are not a member of any group. <a href="<?= Config::get('URL'); ?>group/create">Create one</a>.</p>
+        <?php } else { ?>
+            <table class="messenger-inbox-table">
+                <thead>
+                    <tr>
+                        <td>Group</td>
+                        <td>Last message</td>
+                        <td>Unread</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($groups as $group) { ?>
+                        <tr>
+                            <td><?= htmlentities($group->group_name); ?></td>
+                            <td><?= htmlentities(substr($group->last_message ?? '', 0, 60)) . (strlen($group->last_message ?? '') > 60 ? '...' : ''); ?></td>
+                            <td>
+                                <?php if ($group->unread_count > 0) { ?>
+                                    <span class="msg-badge"><?= (int) $group->unread_count; ?></span>
+                                <?php } ?>
+                            </td>
+                            <td>
+                                <a href="<?= Config::get('URL'); ?>group/conversation/<?= (int) $group->group_id; ?>">Open chat</a>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        <?php } ?>
     </div>
 </div>
