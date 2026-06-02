@@ -17,6 +17,10 @@ Copilot seit 01.06 sehr teuer, nur die Erstellung vom Plan kostet 0,10€ was 1%
 Die Umsetzung war nochmals 0,62€ also mehr als 6% vom monatlichen.
 Dafür hat das ganze nicht mehr als 15 Minuten inkl. Testing gedauert.
 
+# Vergleich
+Mit einem KI Tool lässt es sich mit gutem Prompting viel schneller programmieren. 
+Mittlerweile gibt es nicht mehr so viele Fehler, und wenn man sich vorher einen Plan erstellen lässt, lassen sich Fehler schon vor der Umsetzung gut erkennen.
+
 # Bilder
 ![alt text](aufgaben_imgs/create_group.png)
 ![alt text](aufgaben_imgs/create_group_2.png)
