@@ -74,4 +74,6 @@ return array(
     "FEEDBACK_COOKIE_LOGIN_SUCCESSFUL" => "You were successfully logged in via the remember-me-cookie.",
     "FEEDBACK_USER_ROLE_CHANGE_SUCCESSFUL" => "User role changed successfully.",
     "FEEDBACK_USER_ROLE_CHANGE_FAILED" => "User role change failed.",
+    "FEEDBACK_MESSAGE_SENT" => "Message sent!!",
+    "FEEDBACK_MESSAGE_SEND_FAILED" => "Message could not be sent.",
 );

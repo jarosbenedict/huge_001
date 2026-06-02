@@ -15,6 +15,7 @@
                     <td>Avatar</td>
                     <td>Usernam</td>
                     <td>Group</td>
+                    <?php if (Session::userIsLoggedIn()) { ?><td>Messages</td><?php } ?>
                 </tr>
                 </thead>
                 <?php foreach ($this->users as $user) { ?>
@@ -27,6 +28,11 @@
                         </td>
                         <td><?= $user->user_name; ?></td>
                         <td><?= isset($user->role_name) ? $user->role_name : $user->user_account_type; ?></td>
+                        <?php if (Session::userIsLoggedIn() && $user->user_id != Session::get('user_id')) { ?>
+                            <td><a href="<?= Config::get('URL'); ?>message/conversation/<?= (int) $user->user_id; ?>">Chat</a></td>
+                        <?php } elseif (Session::userIsLoggedIn()) { ?>
+                            <td><em>(du/you)</em></td>
+                        <?php } ?>
                     </tr>
                 <?php } ?>
             </table>

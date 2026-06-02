@@ -29,14 +29,42 @@ class NoteModel
      */
     public static function getNote($note_id)
     {
-        $database = DatabaseFactory::getFactory()->getConnection();
+        // MySQLi version (Anfänger-Stil): direkte Verbindung statt Factory
+        $mysqli = new mysqli(
+            Config::get('DB_HOST'),
+            Config::get('DB_USER'),
+            Config::get('DB_PASS'),
+            Config::get('DB_NAME'),
+            Config::get('DB_PORT')
+        );
 
-        $sql = "SELECT user_id, note_id, note_text FROM notes WHERE user_id = :user_id AND note_id = :note_id LIMIT 1";
-        $query = $database->prepare($sql);
-        $query->execute(array(':user_id' => Session::get('user_id'), ':note_id' => $note_id));
+        // Verbindungsfehler prüfen
+        if ($mysqli->connect_error) {
+            echo 'Verbindung fehlgeschlagen: ' . $mysqli->connect_error;
+            exit;
+        }
 
-        // fetch() is the PDO method that gets a single result
-        return $query->fetch();
+        $sql = "SELECT user_id, note_id, note_text FROM notes WHERE user_id = ? AND note_id = ? LIMIT 1";
+
+        // Prepared Statement vorbereiten
+        $stmt = $mysqli->prepare($sql);
+
+        // Parameter binden: "ii" = zwei Integer-Werte
+        $user_id = Session::get('user_id');
+        $stmt->bind_param("ii", $user_id, $note_id);
+
+        // Statement ausführen
+        $stmt->execute();
+
+        // Ergebnis holen und als Objekt zurückgeben
+        $result = $stmt->get_result();
+        $note = $result->fetch_object();
+
+        // Verbindung schließen
+        $stmt->close();
+        $mysqli->close();
+
+        return $note;
     }
 
     /**

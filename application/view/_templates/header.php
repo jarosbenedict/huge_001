@@ -7,7 +7,7 @@
     <!-- send empty favicon fallback to prevent user's browser hitting the server for lots of favicon requests resulting in 404s -->
     <link rel="icon" href="data:;base64,=">
     <!-- CSS -->
-    <link rel="stylesheet" href="<?php echo Config::get('URL'); ?>css/style.css" />
+    <link rel="stylesheet" href="<?php echo Config::get('URL'); ?>css/style.css?v=<?php echo filemtime(realpath(Config::get('PATH_CONTROLLER') . '../../public/css/style.css')); ?>" />
 </head>
 <body>
     <!-- wrapper, to center website -->
@@ -33,6 +33,14 @@
                 </li>
                 <li <?php if (View::checkForActiveController($filename, "note")) { echo ' class="active" '; } ?> >
                     <a href="<?php echo Config::get('URL'); ?>note/index">My Notes</a>
+                </li>
+                <li <?php if (View::checkForActiveController($filename, "message")) { echo ' class="active" '; } ?> >
+                    <a href="<?php echo Config::get('URL'); ?>message/index">
+                        Messages
+                        <?php $unread = MessageModel::countUnread(); if ($unread > 0) { ?>
+                            <span class="msg-badge"><?= $unread; ?></span>
+                        <?php } ?>
+                    </a>
                 </li>
             <?php } else { ?>
                 <!-- for not logged in users -->
