@@ -46,7 +46,7 @@ class GroupController extends Controller
         // fetch all users for the member-selection list (excluding self)
         $me       = (int) Session::get('user_id');
         $database = DatabaseFactory::getFactory()->getConnection();
-        $sql      = "SELECT user_id, user_name FROM users WHERE user_id != :me ORDER BY user_name ASC";
+        $sql      = "CALL sp_get_all_users_except(:me)";
         $query    = $database->prepare($sql);
         $query->execute(array(':me' => $me));
         $all_users = $query->fetchAll();
