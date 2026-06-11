@@ -47,6 +47,12 @@ return array(
     'PATH_AVATARS' => realpath(dirname(__FILE__).'/../../') . '/public/avatars/',
     'PATH_AVATARS_PUBLIC' => 'avatars/',
     /**
+     * Configuration for: User pictures (gallery)
+     * Images are stored OUTSIDE the public web root for security.
+     * The slash at the end is VERY important!
+     */
+    'PATH_USERPICTURES' => realpath(dirname(__FILE__).'/../../') . '/userpictures/',
+    /**
      * Configuration for: Default controller and action
      */
     'DEFAULT_CONTROLLER' => 'index',

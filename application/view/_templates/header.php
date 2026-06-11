@@ -21,9 +21,7 @@
             <li <?php if (View::checkForActiveController($filename, "index")) { echo ' class="active" '; } ?> >
                 <a href="<?php echo Config::get('URL'); ?>index/index">Index</a>
             </li>
-            <li <?php if (View::checkForActiveController($filename, "profile")) { echo ' class="active" '; } ?> >
-                <a href="<?php echo Config::get('URL'); ?>profile/index">Profiles</a>
-            </li>
+            <!-- weg für mehr platz -->
             <li <?php if (View::checkForActiveControllerAndAction($filename, "profile/userlist")) { echo ' class="active" '; } ?> >
                 <a href="<?php echo Config::get('URL'); ?>profile/userlist">Users &amp; Groups</a>
             </li>
@@ -33,6 +31,9 @@
                 </li>
                 <li <?php if (View::checkForActiveController($filename, "note")) { echo ' class="active" '; } ?> >
                     <a href="<?php echo Config::get('URL'); ?>note/index">My Notes</a>
+                </li>
+                <li <?php if (View::checkForActiveController($filename, "gallery")) { echo ' class="active" '; } ?> >
+                    <a href="<?php echo Config::get('URL'); ?>gallery/index">My Gallery</a>
                 </li>
                 <li <?php if (View::checkForActiveController($filename, "message") || View::checkForActiveController($filename, "group")) { echo ' class="active" '; } ?> >
                     <a href="<?php echo Config::get('URL'); ?>message/index">

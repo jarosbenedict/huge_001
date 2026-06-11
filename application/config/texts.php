@@ -76,4 +76,13 @@ return array(
     "FEEDBACK_USER_ROLE_CHANGE_FAILED" => "User role change failed.",
     "FEEDBACK_MESSAGE_SENT" => "Message sent!!",
     "FEEDBACK_MESSAGE_SEND_FAILED" => "Message could not be sent.",
+    "FEEDBACK_FILE_UPLOAD_SUCCESSFUL" => "File uploaded successfully!",
+    "FEEDBACK_FILE_UPLOAD_FAILED" => "File upload failed!",
+    "FEEDBACK_FILE_TOO_LARGE" => "File is too large! Maximum size is 5 MB.",
+    "FEEDBACK_FILE_TYPE_NOT_ALLOWED" => "File type not allowed! Only JPG, PNG, and GIF are permitted.",
+    "FEEDBACK_FILE_CREATION_FAILED" => "File could not be saved to database.",
+    "FEEDBACK_FILE_DELETE_FAILED" => "File could not be deleted.",
+    "FEEDBACK_FILE_SHARE_FAILED" => "File share status could not be changed.",
+    "FEEDBACK_FILE_NOT_FOUND" => "File not found!",
+    "FEEDBACK_FILE_ACCESS_DENIED" => "Access denied! You do not have permission to view this file.",
 );
