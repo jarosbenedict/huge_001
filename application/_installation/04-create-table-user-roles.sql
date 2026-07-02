@@ -7,4 +7,5 @@ CREATE TABLE IF NOT EXISTS `huge`.`user_roles` (
 INSERT INTO `huge`.`user_roles` (`role_id`, `role_name`) VALUES
   (1, 'Gast'),
   (2, 'Benutzer'),
+  
   (7, 'Admin');

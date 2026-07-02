@@ -56,6 +56,22 @@ class MessageController extends Controller
 
         MessageModel::sendMessage($receiver_id, $text);
 
+        // ---------------------------------------------------------------------
+        // KI-Bot Integration: Wenn Empfänger der Bot-User ist,
+        // rufe Gemini API auf und speichere die Antwort als neue Nachricht.
+        // ---------------------------------------------------------------------
+        $botUserId = (int) Config::get('BOT_USER_ID');
+        if ($receiver_id === $botUserId && $botUserId > 0) {
+            $aiResponse = GeminiApiService::ask($text);
+
+            // Bot-Antwort als Nachricht speichern (Bot sendet an aktuellen User)
+            MessageModel::sendMessageFromBot(
+                Session::get('user_id'),   // Empfänger = aktueller User
+                $botUserId,                // Sender = Bot
+                $aiResponse
+            );
+        }
+
         Redirect::to('message/conversation/' . $receiver_id);
     }
 }

@@ -19,7 +19,10 @@
                     <?php foreach ($this->partners as $partner) { ?>
                         <tr>
                             <td><?= htmlentities($partner->user_name); ?></td>
-                            <td><?= htmlentities(substr($partner->last_message, 0, 60)) . (strlen($partner->last_message) > 60 ? '...' : ''); ?></td>
+                            <td><?php
+                                $last = $partner->last_message ?? '';
+                                echo htmlentities(substr($last, 0, 60)) . (strlen($last) > 60 ? '...' : '');
+                            ?></td>
                             <td>
                                 <?php if ($partner->unread_count > 0) { ?>
                                     <span class="msg-badge"><?= (int) $partner->unread_count; ?></span>

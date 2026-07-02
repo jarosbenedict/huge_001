@@ -159,4 +159,12 @@ return array(
     'EMAIL_VERIFICATION_FROM_NAME' => 'My Project',
     'EMAIL_VERIFICATION_SUBJECT' => 'Account activation for PROJECT XY',
     'EMAIL_VERIFICATION_CONTENT' => 'Please click on this link to activate your account: ',
+
+    /**
+     * Configuration for: AI Chatbot
+     * BOT_USER_ID: Die user_id des Bot-Users in der users-Tabelle (siehe 11-create-bot-user.sql)
+     * GEMINI_API_KEY: Dein Google AI Studio API-Key
+     */
+    'BOT_USER_ID' => 7,
+    'GEMINI_API_KEY' => 'YOUR_GEMINI_API_KEY_HERE',  // Aus Umgebungsvariable laden: getenv('GEMINI_API_KEY')
 );

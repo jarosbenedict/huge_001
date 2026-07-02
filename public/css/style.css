@@ -267,7 +267,11 @@ body {
     color: red;
 }
 
-/* codepen css */
+/* ============================================================
+   CHAT-BUBBLES – Messenger / KI-Chat
+   ============================================================ */
+
+/* Container für alle Bubbles */
 .discussion {
     max-width: 600px;
     margin: 0 auto;
@@ -276,35 +280,85 @@ body {
     flex-flow: column wrap;
 }
 
+/* Basis-Styling für jede Bubble */
 .discussion > .bubble {
     border-radius: 1em;
-    padding: 0.25em 0.75em;
+    padding: 0.5em 0.85em;
     margin: 0.0625em;
-    max-width: 50%;
+    max-width: 70%;
+    word-wrap: break-word;
+    line-height: 1.45;
+    font-size: 14px;
+    position: relative;
 }
 
-.discussion > .bubble.sender {
-    align-self: flex-start;
-    background-color: cornflowerblue;
+/* ----------------------------------------------------------
+   EIGENE Nachrichten (rechts, blau)
+   ---------------------------------------------------------- */
+.discussion > .bubble.mine {
+    align-self: flex-end;
+    background-color: #1a73e8;      /* Google-Blau */
     color: #fff;
 }
-.discussion > .bubble.recipient {
-    align-self: flex-end;
-    background-color: #efefef;
+
+/* ----------------------------------------------------------
+   ANDERE / BOT Nachrichten (links, grau)
+   ---------------------------------------------------------- */
+.discussion > .bubble.theirs {
+    align-self: flex-start;
+    background-color: #e8e8e8;
+    color: #222;
 }
 
-.discussion > .bubble.sender.first  { border-bottom-left-radius: 0.1em; }
-.discussion > .bubble.sender.last   { border-top-left-radius: 0.1em; }
-.discussion > .bubble.sender.middle {
+/* Bot-Bubble: dezenter Farbton + Bot-Icon via CSS */
+.discussion > .bubble.bot {
+    background-color: #f0f0f0;
+    border-left: 3px solid #1a73e8;
+}
+
+/* ----------------------------------------------------------
+   Sender-Name über der Bubble (nur bei anderen/Bot)
+   ---------------------------------------------------------- */
+.bubble-sender-name {
+    display: block;
+    font-size: 11px;
+    font-weight: bold;
+    color: #888;
+    margin-bottom: 2px;
+}
+
+/* ----------------------------------------------------------
+   Gruppierungs-Radien (zusammenhängende Bubbles)
+   ---------------------------------------------------------- */
+
+/* MINE (rechts) */
+.discussion > .bubble.mine.first  { border-bottom-right-radius: 0.1em; }
+.discussion > .bubble.mine.last   { border-top-right-radius: 0.1em; }
+.discussion > .bubble.mine.middle {
+    border-bottom-right-radius: 0.1em;
+    border-top-right-radius: 0.1em;
+}
+
+/* THEIRS (links) */
+.discussion > .bubble.theirs.first  { border-bottom-left-radius: 0.1em; }
+.discussion > .bubble.theirs.last   { border-top-left-radius: 0.1em; }
+.discussion > .bubble.theirs.middle {
     border-bottom-left-radius: 0.1em;
     border-top-left-radius: 0.1em;
 }
 
-.discussion > .bubble.recipient.first  { border-bottom-right-radius: 0.1em; }
-.discussion > .bubble.recipient.last   { border-top-right-radius: 0.1em; }
-.discussion > .bubble.recipient.middle {
-    border-bottom-right-radius: 0.1em;
-    border-top-right-radius: 0.1em;
+/* ----------------------------------------------------------
+   Bot-Badge (im Chat-Titel)
+   ---------------------------------------------------------- */
+.bot-badge {
+    display: inline-block;
+    background: #1a73e8;
+    color: #fff;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 8px;
+    vertical-align: middle;
 }
 
 /* badge für ungelesene Nachrichten */
